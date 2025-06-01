@@ -26,6 +26,8 @@
 #     -109 <= nums[i] <= 109
 #     -109 <= target <= 109
 
+# Not solved yet
+
 def four_sum(nums, target)
     nums.sort!
     result = []

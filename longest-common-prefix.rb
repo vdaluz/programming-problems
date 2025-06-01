@@ -27,26 +27,22 @@
 # @param {String[]} strs
 # @return {String}
 def longest_common_prefix(strs)
+    return "" if strs.length == 0
+    return strs[0] if strs.length == 1
     
-  prefix = []
-  index = 0
-  continue = true
+    smallest_str = strs.min_by(&:length)
+    max_prefix_length = smallest_str.length
+    prefix = ""
 
-  while continue
+    max_prefix_length.times do |i|
+        strs.each do |str|
+            if str[i] != smallest_str[i]
+                return prefix
+            end
+        end
+        prefix += smallest_str[i]
+    end
 
-      current_char = strs[0][index]
-      break if current_char.nil?
-      strs.each do |str|
-          if str[index] != current_char
-              continue = false
-              break
-          end
-      end
-      prefix << current_char if continue
-      index += 1
-
-  end
-
-  prefix.join
+    prefix
 
 end

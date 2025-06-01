@@ -29,15 +29,14 @@
 
 
 def find_median_sorted_arrays(nums1, nums2)
-  
   median = -1
-  all_nums = nums1 + nums2
-  all_nums.sort!
-  len = all_nums.length
-  if len % 2 == 0
-    median = (all_nums[len / 2 - 1] + all_nums[len / 2]) / 2.0
-  else
-    median = all_nums[len / 2]
+    all_nums = nums1 + nums2
+    all_nums.sort!
+    len = all_nums.length
+    if len % 2 == 0
+      median = (all_nums[len / 2 - 1] + all_nums[len / 2]) / 2.0
+    else
+      median = all_nums[len / 2]
+    end
+    median
   end
-  median
-end

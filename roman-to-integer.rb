@@ -52,23 +52,23 @@ def roman_to_int(s)
   substractive_value = 0
 
   chars.each_with_index do |char, index|
-    current_value = 0
-    next_index = index + 1
+      current_value = 0
+      next_index = index + 1
 
-    if index == s.length - 1
-      current_value = symbol_values[char.to_sym]
-    else
-      next_char = chars[next_index]
-
-      if symbol_values[char.to_sym] >= symbol_values[next_char.to_sym]
-        current_value = symbol_values[char.to_sym]
+      if index == s.length - 1
+          current_value = symbol_values[char.to_sym]
       else
-        substractive_value = symbol_values[char.to_sym]
+          next_char = chars[next_index]
+          
+          if symbol_values[char.to_sym] >= symbol_values[next_char.to_sym]
+              current_value = symbol_values[char.to_sym]
+          else
+              substractive_value = symbol_values[char.to_sym]
+          end
       end
-    end
 
-    answer += current_value - substractive_value
-    substractive_value = 0
+      answer += current_value - substractive_value
+      substractive_value = 0
   end
 
   answer

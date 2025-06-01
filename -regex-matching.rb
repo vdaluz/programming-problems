@@ -35,3 +35,40 @@
 #     p contains only lowercase English letters, '.', and '*'.
 #     It is guaranteed for each appearance of the character '*', there will be a previous valid character to match.
 
+# Not solved yet
+
+def is_match(s, p)
+    return false unless s == p || p.include?('.') || p.include?('*')
+    
+    i = 0
+    j = 0
+    while j < p.length
+        current_char = s[i]
+        current_pattern = p[j]
+
+        if j + 1 < p.length && p[j + 1] == '*'
+            if test_match(current_char, current_pattern)
+                while s[i] == current_char
+                    i += 1
+                end
+            end
+            j += 2
+        else
+            if test_match(current_char, current_pattern)
+                i += 1
+                j += 1
+            else
+                return false
+            end
+        end
+    end
+    return true
+end
+
+def test_match(s, p)
+    if s == p || p == '.'
+        return true
+    else
+        return false
+    end
+end

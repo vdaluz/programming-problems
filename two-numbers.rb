@@ -24,46 +24,16 @@
 #     0 <= Node.val <= 9
 #     It is guaranteed that the list represents a number that does not have leading zeros.
 
-# Solution 1
-
-def add_two_numbers(l1, l2)
-  num1 = calculate_int_from_reverse_digit_list(l1)
-  num2 = calculate_int_from_reverse_digit_list(l2)
-  sum = num1 + num2
-  result = ListNode.new
-  current = result
-  sum_chars = sum.to_s.reverse.chars
-  sum_chars.each_with_index do |char, i|
-    current.val = char.to_i
-    current.next = ListNode.new unless i == sum_chars.length - 1
-    current = current.next
-  end
-  result
-end
-
-def calculate_int_from_reverse_digit_list(list_head)
-  digits = []
-  current = list_head
-  until current.nil?
-    digits.push(current.val)
-    current = current.next
-  end
-  digits.join('').reverse.to_i
-end
-
-# Solution 2
-
 def add_two_numbers(l1, l2)
   result = ListNode.new
   current1 = l1
   current2 = l2
   current_result = result
   carry = 0
-
-  until current_result.nil?
+  while(!current_result.nil?)
     num1 = current1 ? current1.val : 0
     num2 = current2 ? current2.val : 0
-
+    
     current1 = current1.next if current1
     current2 = current2.next if current2
 
@@ -72,14 +42,14 @@ def add_two_numbers(l1, l2)
     current_result.val = sum % 10
 
     if current1.nil? && current2.nil?
-      current_result.next = ListNode.new(carry, nil) if carry > 0
-      break
+        current_result.next = ListNode.new(carry, nil) if carry > 0
+        break
     else
-      current_result.next = ListNode.new
+        current_result.next = ListNode.new
     end
-
+    
     current_result = current_result.next
   end
-
+     
   result
 end

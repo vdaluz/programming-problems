@@ -4,8 +4,6 @@
 
 # You can return the answer in any order.
 
- 
-
 # Example 1:
 
 # Input: nums = [2,7,11,15], target = 9
@@ -30,15 +28,15 @@
 #     Only one valid answer exists.
 
 def two_sum(nums, target)
-  return [0, 1] if nums.length == 2
+  indices = {}
 
-  options = Set.new
+  nums.each_with_index do |n, i|
+    indices[n] = i
+  end
 
-  nums.each_with_index do |num, i|
-    next if num > target
-
-    return [i, nums.rindex(target - num)] if options.include?(target - num)
-
-    options.add(num)
+  nums.each_with_index do |n, i|
+    complement = target - n
+    j = indices[complement]
+    return [i, j] unless j.nil? || j == i
   end
 end

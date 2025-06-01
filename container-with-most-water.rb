@@ -30,20 +30,20 @@
 # @param {Integer[]} height
 # @return {Integer}
 def max_area(height)
-  left = 0
-  right = height.length - 1
-  max_area = 0
+    left = 0
+    right = height.length - 1
+    max_area = 0
 
-  while left < right
-      left_height = height[left]
-      right_height = height[right]
-      current_area = [left_height, right_height].min * (right-left)
-      max_area = [max_area, current_area].max
-      if left_height <= right_height
-          left += 1
-      else
-          right -= 1
-      end
-  end
-  max_area
+    while right > left
+        left_height = height[left]
+        right_height = height[right]
+        current_area = [left_height, right_height].min * (right-left)
+        max_area = [max_area, current_area].max
+        if left_height <= right_height
+            left += 1
+        else
+            right -= 1
+        end
+    end
+    max_area
 end

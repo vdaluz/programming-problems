@@ -63,6 +63,7 @@
 # @param {Integer} num
 # @return {String}
 def int_to_roman(num)
+    
   magnitudes = [1000, 100, 10, 1]
   magnitude_symbols = ['M', 'C', 'X', 'I']
   half_symbols = ['', 'D', 'L', 'V']
@@ -70,27 +71,29 @@ def int_to_roman(num)
   roman = ''
 
   magnitudes.each_with_index do |magnitude, i|
-    current_value = remainder / magnitude
 
-    if current_value <= 3
-      current_value.times do
-        roman << magnitude_symbols[i]
-      end
-    elsif current_value == 4
-      roman << magnitude_symbols[i]
-      roman << half_symbols[i]
-    elsif current_value > 4 && current_value < 9
-      roman << half_symbols[i]
-      (current_value - 5).times do
-        roman << magnitude_symbols[i]
-      end
-    else
-      roman << magnitude_symbols[i]
-      roman << magnitude_symbols[i - 1]
-    end
+      current_value =  remainder / magnitude
 
-    remainder %= magnitude
-  end
+      if current_value <= 3
+          current_value.times do
+              roman << magnitude_symbols[i]
+          end
+      elsif current_value == 4
+          roman << magnitude_symbols[i]
+          roman << half_symbols[i]
+      elsif current_value > 4 && current_value < 9
+          roman << half_symbols[i]
+          (current_value - 5).times do
+              roman << magnitude_symbols[i]
+          end
+      else
+          roman << magnitude_symbols[i]
+          roman << magnitude_symbols[i - 1]
+      end   
+
+      remainder = remainder % magnitude 
+
+  end  
 
   roman
 end

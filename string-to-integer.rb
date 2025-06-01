@@ -96,7 +96,7 @@ def my_atoi(s)
   valid_signs = ['-','+']
   input_chars = s.strip.split('')
   valid_chars = []
-  sign_multiplier = input_chars[0] == '-' ? -1 : 1
+  mult = input_chars[0] == '-' ? -1 : 1
   input_chars.shift if valid_signs.include?(input_chars[0])
   
   input_chars.each do |c|

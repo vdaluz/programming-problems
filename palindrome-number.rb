@@ -43,6 +43,7 @@ def is_palindrome(x)
   while magnitude > 0
       first_digit = next_x / 10 ** magnitude
       last_digit = next_x % 10
+      # puts [next_x, magnitude, first_digit, last_digit].join(' ')
       return false unless first_digit == last_digit
       return true if magnitude.between?(1,2)
 

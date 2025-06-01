@@ -37,29 +37,26 @@
 # @param {Integer[]} nums
 # @return {Integer[][]}
 def three_sum(nums)
-  target = 0
-  sorted_nums = nums.sort
-  answer = Set.new
-
-  sorted_nums.each_with_index do |num, k|
-      two_sum_indexes = two_sum(sorted_nums, target - num, k)
-      unless two_sum_indexes.nil?
-          x = sorted_nums[two_sum_indexes[0]]
-          y = sorted_nums[two_sum_indexes[1]]
-          z = num
-          answer.add([x, y, z].sort) 
+  nums.sort!
+  result = []
+  nums.each_with_index do |num, index|
+      next if index > 0 && nums[index] == nums[index - 1]
+      j = index + 1
+      k = nums.length - 1
+      while j < k
+          sum = num + nums[j] + nums[k]
+          if sum == 0
+              result << [num, nums[j], nums[k]]
+              j += 1  
+              k -= 1
+              j += 1 while nums[j] == nums[j - 1] && j < k
+              k -= 1 while nums[k] == nums[k + 1] && j < k
+          elsif sum < 0
+              j += 1
+          else
+              k -= 1
+          end
       end
   end
-
-  answer.to_a
-end
-
-def two_sum(nums, target, k)
-  nums.each_with_index do |num, i|
-      j = nums.index(target-num)
-      puts [nums[k], num, target - num].join(' ')
-      return [i, j] unless j.nil? || (i == j || i == k || j == k)
-  end
-
-  nil
+  result
 end
